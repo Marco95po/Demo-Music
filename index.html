@@ -20,6 +20,7 @@
             flex-direction: column;
             align-items: center;
             padding: 2rem;
+            overflow-x: hidden;
         }
         
         .container {
@@ -31,19 +32,43 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1s ease 0.3s forwards;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.5s forwards;
         }
         
         .description {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            opacity: 0;
             line-height: 1.6;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.7s forwards;
         }
         
         .audio-container {
@@ -52,6 +77,9 @@
             padding: 2rem;
             margin: 2rem 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.9s forwards;
         }
         
         audio {
@@ -67,6 +95,17 @@
             padding: 1.5rem;
             margin-top: 2rem;
             text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .info-box:nth-of-type(1) {
+            animation-delay: 1.1s;
+        }
+        
+        .info-box:nth-of-type(2) {
+            animation-delay: 1.3s;
         }
         
         .info-box h2 {
@@ -83,7 +122,16 @@
             margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInLeft 0.8s ease forwards;
         }
+        
+        .info-box li:nth-child(1) { animation-delay: 1.4s; }
+        .info-box li:nth-child(2) { animation-delay: 1.5s; }
+        .info-box li:nth-child(3) { animation-delay: 1.6s; }
+        .info-box li:nth-child(4) { animation-delay: 1.7s; }
+        .info-box li:nth-child(5) { animation-delay: 1.8s; }
         
         .info-box li:before {
             content: "▶";
@@ -99,6 +147,9 @@
             margin-top: 2rem;
             text-align: left;
             overflow-x: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 1.5s forwards;
         }
         
         .code-container h3 {
@@ -128,7 +179,129 @@
         .footer {
             margin-top: 2rem;
             font-size: 0.9rem;
-            opacity: 0.7;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.7s forwards;
+        }
+        
+        /* Estilos para el botón de descarga */
+        .download-container {
+            margin: 2rem 0;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeInScale 1s ease 1s forwards;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #fdbb2d, #b21f1f);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .download-btn:hover:before {
+            left: 100%;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to right, #ffcc44, #c72525);
+        }
+        
+        .download-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .download-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Efecto de partículas de fondo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
         
         @media (max-width: 600px) {
@@ -143,11 +316,27 @@
             .audio-container {
                 padding: 1.5rem;
             }
+            
+            .logo {
+                max-width: 150px;
+            }
+            
+            .download-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Efecto de partículas de fondo -->
+    <div class="particles" id="particles"></div>
+    
     <div class="container">
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/T25RBFSB/Logo-de-Radio-Minuto-Cero.png" alt="Logo RADIO MINUTO CERO" class="logo">
+        </div>
+        
         <h1>RADIO MINUTO CERO</h1>
         
         <p class="description">
@@ -157,9 +346,17 @@
         
         <div class="audio-container">
             <audio controls autoplay>
-                <source src="https://uk6freenew.listen2myradio.com/live.mp3?typeportmount=s1_3734_stream_611759264"audio/mpeg">
+                <source src="https://uk6freenew.listen2myradio.com/live.mp3?typeportmount=s1_3734_stream_611759264" type="audio/mpeg">
                 Tu navegador no soporta audio en línea.
             </audio>
+        </div>
+        
+        <!-- Botón de descarga de la app -->
+        <div class="download-container">
+            <a href="https://apk.e-droid.net/apk/app3346530-epq9vc.apk?v=21" class="download-btn" id="downloadApp" download="RadioMinutoCero.apk">
+                <span class="download-icon">📱</span>
+                DESCARGAR NUESTRA APP
+            </a>
         </div>
         
         <div class="info-box">
@@ -173,17 +370,67 @@
             </ul>
         </div>
         
-        <div class="code-container">
-            <h3>Código HTML Utilizado</h3>
-            <pre><code>&lt;<span class="tag">audio</span> <span class="attribute">controls</span> <span class="attribute">autoplay</span>&gt;
-  &lt;<span class="tag">source</span> <span class="attribute">src</span>=<span class="value">"https://adiolineahfcompany.radiostream321.com/stream.mp3"</span> <span class="attribute">type</span>=<span class="value">"audio/mpeg"</span>&gt;
-  Tu navegador no soporta audio en línea.
-&lt;/<span class="tag">audio</span>&gt;</code></pre>
+        <div class="info-box">
+            <h2>Ventajas de Nuestra App</h2>
+            <ul>
+                <li>Escucha sin interrupciones incluso cuando cierres la aplicación</li>
+                <li>Notificaciones de programas en vivo</li>
+                <li>Acceso rápido a tus programas favoritos</li>
+                <li>Menor consumo de datos</li>
+                <li>Funciona sin conexión a internet (modo offline limitado)</li>
+            </ul>
         </div>
         
         <div class="footer">
-            <p>Página creada con HTML, CSS y JavaScript</p>
+            <p>© 2023 RADIO MINUTO CERO - Todos los derechos reservados</p>
         </div>
     </div>
+
+    <script>
+        // Script para manejar la descarga con confirmación
+        document.getElementById('downloadApp').addEventListener('click', function(e) {
+            // Opcional: Mostrar un mensaje de confirmación
+            if (!confirm('¿Estás seguro de que deseas descargar la aplicación?')) {
+                e.preventDefault();
+                return;
+            }
+            
+            // Opcional: Agregar un evento de seguimiento para analíticas
+            console.log('Descarga de la app iniciada');
+            
+            // La descarga se realizará automáticamente gracias al atributo "download"
+        });
+        
+        // Crear partículas de fondo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición inicial aleatoria
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Retraso de animación aleatorio
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Duración de animación aleatoria
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Inicializar partículas cuando la página cargue
+        window.addEventListener('load', createParticles);
+    </script>
 </body>
-</html> Dame un repdouctor mas moderno. Quiero el todo el codigo completo sin errores.
+</html>
