@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist de Beats Premium</title>
+    <title>RADIO MINUTO CERO</title>
     <style>
         * {
             margin: 0;
@@ -13,783 +13,177 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #f0f0f0;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 2rem;
         }
         
         .container {
+            max-width: 800px;
             width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            width: 100%;
         }
         
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #ff6b6b, #ffa86b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         
-        .subtitle {
-            font-size: 1.2rem;
-            color: #b8b8b8;
-            margin-bottom: 30px;
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
         }
         
-        .playlist-container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-        }
-        
-        .playlist-header {
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .playlist-cover {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-right: 20px;
+        .audio-container {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .playlist-cover img {
+        audio {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .playlist-info h2 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        
-        .playlist-info p {
-            color: #b8b8b8;
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-        
-        .playlist-stats {
-            display: flex;
-            gap: 15px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        .tracks-list {
-            padding: 0;
-        }
-        
-        .track-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: background 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .track-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .track-item.playing {
-            background: rgba(255, 107, 107, 0.1);
-        }
-        
-        .track-number {
-            width: 30px;
-            color: #b8b8b8;
-            font-size: 0.9rem;
-        }
-        
-        .track-info {
-            flex-grow: 1;
-        }
-        
-        .track-title {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-        
-        .track-description {
-            font-size: 0.85rem;
-            color: #b8b8b8;
-        }
-        
-        .track-duration {
-            color: #b8b8b8;
-            margin: 0 20px;
-            font-size: 0.9rem;
-        }
-        
-        .track-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .action-btn {
-            background: transparent;
-            border: none;
-            color: #b8b8b8;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .action-btn:hover {
-            color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
-        }
-        
-        .player-container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-        }
-        
-        .now-playing {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .now-playing-cover {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-right: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .now-playing-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .now-playing-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-        
-        .now-playing-info p {
-            font-size: 0.9rem;
-            color: #b8b8b8;
-        }
-        
-        .player-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #ffa86b);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-        
-        .time-container {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #b8b8b8;
-        }
-        
-        .control-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-        }
-        
-        .control-btn {
-            background: transparent;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-        
-        .play-pause-btn {
-            width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(90deg, #ff6b6b, #ffa86b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .play-pause-btn i {
-            color: white;
-        }
-        
-        .volume-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .volume-slider {
-            flex-grow: 1;
-            -webkit-appearance: none;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
+            border-radius: 10px;
             outline: none;
         }
         
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff6b6b;
-            cursor: pointer;
-        }
-        
-        .download-section {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-        
-        .download-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: #fff;
-            text-align: center;
-        }
-        
-        .download-options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .download-btn {
-            background: linear-gradient(90deg, #ff6b6b, #ffa86b);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-        
-        /* Nuevos estilos para el botón de información */
-        .info-section {
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .info-btn {
-            background: linear-gradient(90deg, #6b83ff, #6bc1ff);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(107, 131, 255, 0.3);
-            font-size: 1rem;
-        }
-        
-        .info-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(107, 131, 255, 0.4);
-        }
-        
-        /* Modal de información */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, #1a1638 0%, #2a2565 100%);
-            width: 90%;
-            max-width: 600px;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #b8b8b8;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: #ff6b6b;
-        }
-        
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            text-align: center;
-            background: linear-gradient(90deg, #6b83ff, #6bc1ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .beat-structure {
-            margin-bottom: 25px;
-        }
-        
-        .structure-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #fff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
-        }
-        
-        .structure-list {
-            list-style: none;
-        }
-        
-        .structure-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: background 0.3s ease;
-        }
-        
-        .structure-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .structure-part {
-            font-weight: 500;
-            color: #fff;
-        }
-        
-        .structure-time {
-            color: #b8b8b8;
-        }
-        
-        .bpm-info {
-            text-align: center;
-            font-size: 1.2rem;
-            padding: 15px;
-            background: rgba(107, 131, 255, 0.1);
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin-top: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
         }
         
-        .bpm-value {
-            font-weight: bold;
-            color: #6bc1ff;
+        .info-box h2 {
+            margin-bottom: 1rem;
+            color: #fdbb2d;
         }
         
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #b8b8b8;
-            width: 100%;
+        .info-box ul {
+            list-style-type: none;
+            padding-left: 1rem;
         }
         
-        @media (max-width: 768px) {
-            .playlist-header {
-                flex-direction: column;
-                text-align: center;
+        .info-box li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .info-box li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #fdbb2d;
+        }
+        
+        .code-container {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+            overflow-x: auto;
+        }
+        
+        .code-container h3 {
+            margin-bottom: 1rem;
+            color: #fdbb2d;
+        }
+        
+        pre {
+            color: #d4d4d4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .tag {
+            color: #569cd6;
+        }
+        
+        .attribute {
+            color: #9cdcfe;
+        }
+        
+        .value {
+            color: #ce9178;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
             }
             
-            .playlist-cover {
-                margin-right: 0;
-                margin-bottom: 15px;
+            h1 {
+                font-size: 2rem;
             }
             
-            .download-options {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .track-item {
-                padding: 12px 15px;
-            }
-            
-            .track-duration {
-                display: none;
-            }
-            
-            .modal-content {
-                padding: 20px;
-            }
-            
-            .structure-item {
-                flex-direction: column;
-                text-align: center;
+            .audio-container {
+                padding: 1.5rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Beats Premium</h1>
-            <p class="subtitle">Playlist exclusiva de beats de alta calidad</p>
-        </header>
-        <div class="player-container">
-            <div class="now-playing">
-                <div class="now-playing-cover">
-                    <img src="https://i.postimg.cc/W1RH1m6F/Gemini-Generated-Image-d8rpfnd8rpfnd8rp.png" alt="Now Playing">
-                </div>
-                <div class="now-playing-info">
-                    <h3>Urban Dreams</h3>
-                    <p>Beats Premium</p>
-                </div>
-            </div>
-            
-            <div class="player-controls">
-                <div class="progress-container" id="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-                <div class="time-container">
-                    <span id="current-time">0:00</span>
-                    <span id="duration">0:00</span>
-                </div>
-                
-                <div class="control-buttons">
-                    <button class="control-btn">
-                        <i class="fas fa-random"></i>
-                    </button>
-                    <button class="control-btn">
-                        <i class="fas fa-step-backward"></i>
-                    </button>
-                    <button class="play-pause-btn" id="play-pause-btn">
-                        <i class="fas fa-play" id="play-icon"></i>
-                    </button>
-                    <button class="control-btn">
-                        <i class="fas fa-step-forward"></i>
-                    </button>
-                    <button class="control-btn">
-                        <i class="fas fa-redo"></i>
-                    </button>
-                </div>
-                
-                <div class="volume-controls">
-                    <i class="fas fa-volume-up volume-icon"></i>
-                    <input type="range" class="volume-slider" id="volume" min="0" max="1" step="0.01" value="1">
-                </div>
-            </div>
-            
-            <audio id="audio-player">
-                <source src="https://www.dropbox.com/scl/fi/q1di0jooewivb0und62t4/Trap-Malandro-Beats..mp3?rlkey=navobutvuwa10gmvwbedw3j0x&st=k4qj44lo&raw=1" type="audio/mpeg">
+        <h1>RADIO MINUTO CERO</h1>
+        
+        <p class="description">
+            Disfruta de tu emisora de radio favorita directamente desde tu navegador. 
+            El reproductor comenzará automáticamente cuando cargue la página.
+        </p>
+        
+        <div class="audio-container">
+            <audio controls autoplay>
+                <source src="https://uk6freenew.listen2myradio.com/live.mp3?typeportmount=s1_3734_stream_611759264"audio/mpeg">
+                Tu navegador no soporta audio en línea.
             </audio>
         </div>
         
-        <div class="download-section">
-            <h3>Descargar este beat</h3>
-            <div class="download-options">
-                <a href="https://download946.mediafire.com/awz7vhd77l4g3sKa1jl6h6iCCCFderOcjhk25SI4Sp2rJgJm-B_BCo4orqNaHgvrgyIrXSp1M2itqXy_fVH2AlPBxqkr_u6CpKpm4mSD8q0Gm90VfELun2_UVtZ5cAK59VrbNDKw8lpbfQH8h_LgDOZbvF-_BvB8iD7OXp9MConek-s/xl0m4mfrnf386u7/Trap+Malandro+Beats..mp3" download="Urban_Dreams.mp3" class="download-btn">
-                    <i class="fas fa-download"></i>
-                    <span>Descargar MP3</span>
-                </a>
-                <a href="https://download1323.mediafire.com/8tje5le8zxwgVSBncXekl80ZKspf02tljPtjT8XPTQFFjgKZD1goyp8KJpqs2nyU4T-BmiVAy5lEbZD_ceaR6rUlGE0mofTZNZMqTGGMkNhbr9XouWxal1PlqJJEMzbHxns3Bk4g45oPB9_Maw-fIW5iPPsysWEf60ViQctpttiyVRQ/llzdlogkatzsyu6/Trap+Malandro+Beats..wav" download="Urban_Dreams.wav" class="download-btn">
-                    <i class="fas fa-download"></i>
-                    <span>Descargar WAV</span>
-                </a>
-            </div>
+        <div class="info-box">
+            <h2>Características del Reproductor</h2>
+            <ul>
+                <li>Reproducción automática al cargar la página</li>
+                <li>Controles de reproducción intuitivos</li>
+                <li>Compatible con la mayoría de navegadores modernos</li>
+                <li>Diseño responsivo que se adapta a cualquier dispositivo</li>
+                <li>Streaming de audio de alta calidad</li>
+            </ul>
         </div>
         
-        <!-- Sección del botón de información -->
-        <div class="info-section">
-            <button class="info-btn" id="info-btn">
-                <i class="fas fa-info-circle"></i>
-                <span>Información del Beat</span>
-            </button>
+        <div class="code-container">
+            <h3>Código HTML Utilizado</h3>
+            <pre><code>&lt;<span class="tag">audio</span> <span class="attribute">controls</span> <span class="attribute">autoplay</span>&gt;
+  &lt;<span class="tag">source</span> <span class="attribute">src</span>=<span class="value">"https://adiolineahfcompany.radiostream321.com/stream.mp3"</span> <span class="attribute">type</span>=<span class="value">"audio/mpeg"</span>&gt;
+  Tu navegador no soporta audio en línea.
+&lt;/<span class="tag">audio</span>&gt;</code></pre>
         </div>
         
-        <!-- Modal de información -->
-        <div class="modal-overlay" id="modal-overlay">
-            <div class="modal-content">
-                <button class="close-modal" id="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-                <h2 class="modal-title">Estructura del Beat</h2>
-                
-                <div class="beat-structure">
-                    <h3 class="structure-title">Secciones</h3>
-                    <ul class="structure-list">
-                        <li class="structure-item">
-                            <span class="structure-part">Inicio</span>
-                            <span class="structure-time">0:00 - 0:08</span>
-                        </li>
-                        <li class="structure-item">
-                            <span class="structure-part">Verso 1</span>
-                            <span class="structure-time">0:08 - 0:33</span>
-                        </li>
-                        <li class="structure-item">
-                            <span class="structure-part">Coro</span>
-                            <span class="structure-time">0:33 - 1:33</span>
-                        </li>
-                        <li class="structure-item">
-                            <span class="structure-part">Verso 2</span>
-                            <span class="structure-time">1:33 - 2:07</span>
-                        </li>
-                        <li class="structure-item">
-                            <span class="structure-part">Coro</span>
-                            <span class="structure-time">2:07 - 2:55</span>
-                        </li>
-                        <li class="structure-item">
-                            <span class="structure-part">Final</span>
-                            <span class="structure-time">2:55 - 3:11</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bpm-info">
-                    <p>BPM: <span class="bpm-value">130</span></p>
-                </div>
-            </div>
+        <div class="footer">
+            <p>Página creada con HTML, CSS y JavaScript</p>
         </div>
-        
-        <footer>
-            <p>© 2023 Beats Premium - Todos los derechos reservados</p>
-        </footer>
     </div>
-
-    <script>
-        // Configurar el reproductor
-        const player = document.getElementById('audio-player');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const playIcon = document.getElementById('play-icon');
-        const progressBar = document.getElementById('progress-bar');
-        const progressContainer = document.getElementById('progress-container');
-        const currentTimeEl = document.getElementById('current-time');
-        const durationEl = document.getElementById('duration');
-        const volumeSlider = document.getElementById('volume');
-        
-        // Elementos del modal de información
-        const infoBtn = document.getElementById('info-btn');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const closeModal = document.getElementById('close-modal');
-        
-        // Reproducir/pausar
-        playPauseBtn.addEventListener('click', () => {
-            if (player.paused) {
-                player.play();
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-            } else {
-                player.pause();
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-            }
-        });
-        
-        // Actualizar barra de progreso
-        player.addEventListener('timeupdate', () => {
-            const currentTime = player.currentTime;
-            const duration = player.duration;
-            const progressPercent = (currentTime / duration) * 100;
-            progressBar.style.width = `${progressPercent}%`;
-            
-            // Formatear y mostrar tiempo
-            currentTimeEl.textContent = formatTime(currentTime);
-            if (!isNaN(duration)) {
-                durationEl.textContent = formatTime(duration);
-            }
-        });
-        
-        // Click en la barra de progreso
-        progressContainer.addEventListener('click', (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = player.duration;
-            player.currentTime = (clickX / width) * duration;
-        });
-        
-        // Control de volumen
-        volumeSlider.addEventListener('input', () => {
-            player.volume = volumeSlider.value;
-        });
-        
-        // Cuando termina la reproducción
-        player.addEventListener('ended', () => {
-            playIcon.classList.remove('fa-pause');
-            playIcon.classList.add('fa-play');
-            progressBar.style.width = '0%';
-        });
-        
-        // Formatear tiempo en mm:ss
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-        
-        // Función para reproducir/pausar al hacer clic en la pista
-        function togglePlayback() {
-            if (player.paused) {
-                player.play();
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-            } else {
-                player.pause();
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-            }
-        }
-        
-        // Pausar el audio cuando se hace clic en otro lado de la página
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.player-container') && 
-                !e.target.closest('.track-item') &&
-                !e.target.closest('.playlist-cover')) {
-                
-                if (player && !player.paused) {
-                    player.pause();
-                    playIcon.classList.remove('fa-pause');
-                    playIcon.classList.add('fa-play');
-                }
-            }
-        });
-        
-        // Abrir modal de información
-        infoBtn.addEventListener('click', () => {
-            modalOverlay.classList.add('active');
-        });
-        
-        // Cerrar modal de información
-        closeModal.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-        });
-        
-        // Cerrar modal al hacer clic fuera del contenido
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-            }
-        });
-        
-        // Cerrar modal con la tecla Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                modalOverlay.classList.remove('active');
-            }
-        });
-    </script>
 </body>
-</html>
+</html> Dame un repdouctor mas moderno. Quiero el todo el codigo completo sin errores.
